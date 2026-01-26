@@ -18,6 +18,13 @@ namespace graTurowa
         {
             Random rnd = new Random();
             int damage = rnd.Next(MinDmg, MaxDmg + 1);
+            if (rnd.Next(0, 101) <= CritChance)
+            {
+                damage *= 2;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"{Name} wyprowadza potężny cios!");
+                Console.ResetColor();
+            }
             return damage;
         }
         public virtual int Defend(int incomingDamage)
@@ -44,7 +51,9 @@ namespace graTurowa
             Random rnd = new Random();
             if (rnd.Next(0, 2) == 0)
             {
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
                 Console.WriteLine($"{Name} wykonuje unik!");
+                Console.ResetColor();
                 return 0;
             }
             return incomingDamage;
@@ -65,7 +74,9 @@ namespace graTurowa
             Random rnd = new Random();
             if (rnd.Next(0, 4) == 0)
             {
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
                 Console.WriteLine($"{Name} wykonuje obronę tarczą!");
+                Console.ResetColor();
                 return 0;
             }
             return incomingDamage;
@@ -88,7 +99,9 @@ namespace graTurowa
             if (rnd.Next(0, 4) == 0)
             {
                 damage *= 2;
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
                 Console.WriteLine($"{Name} podwaja obrażenia!");
+                Console.ResetColor();
             }
             return damage;
         }
@@ -108,7 +121,9 @@ namespace graTurowa
             Random rnd = new Random();
             if (rnd.Next(0, 2) == 0)
             {
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
                 Console.WriteLine($"{Name} wpada w szał i uderza ponownie!");
+                Console.ResetColor();
                 return true;
             }
             return false;

@@ -18,8 +18,5 @@ class Program
         Player hero2 = CharCreator.Create();
 
         BattleSystem.Battle(hero1, hero2);
-
-        Console.WriteLine("\nKoniec gry. Naciśnij Enter, aby wyjść.");
-        Console.ReadLine();
     }
 }
