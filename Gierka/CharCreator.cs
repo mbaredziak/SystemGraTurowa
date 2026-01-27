@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace graTurowa
             string name = Console.ReadLine();
 
             Stats choosenClass = null;
+            ConsoleColor color = ConsoleColor.Black;
 
             while (choosenClass == null)
             {
@@ -30,9 +32,16 @@ namespace graTurowa
                 Console.WriteLine("3. Mag      (Mało HP, Potężny atak)");
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine("4. Berserk  (Średnie HP, Średni atak");
+                Console.WriteLine("4. Berserk  (Średnie HP, Średni atak)");
                 Console.ResetColor();
-                Console.Write("Twój wybór (1-4): ");
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("5. Paladyn (Średnie HP, Średni atak)");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("6. Łowca aniołów (Średnie HP, Średni atak)");
+                Console.ResetColor();
+                Console.Write("\nTwój wybór (1-6): ");
+                Console.WriteLine();
 
                 string input = Console.ReadLine();
 
@@ -40,26 +49,41 @@ namespace graTurowa
                 {
                     case "1":
                         choosenClass = new Warrior();
+                        color = ConsoleColor.Blue;
                         break;
                     case "2":
                         choosenClass = new Archer();
+                        color = ConsoleColor.Green;
                         break;
                     case "3":
                         choosenClass = new Mage();
+                        color = ConsoleColor.DarkMagenta;
                         break;
                     case "4":
                         choosenClass = new Berserk();
+                        color = ConsoleColor.DarkYellow;
+                        break;
+                    case "5":
+                        choosenClass = new Paladin();
+                        color = ConsoleColor.DarkRed;
+                        break;
+                    case "6":
+                        choosenClass=new AngelHunter();
+                        color = ConsoleColor.Cyan;
                         break;
                     default:
-                        Console.WriteLine("Niepoprawny wybór! Wpisz 1, 2, 3 lub 4.");
+                        Console.WriteLine("Niepoprawny wybór! Wpisz 1, 2, 3, 4, 5 lub 6.");
                         break;
                 }
             }
-            Console.ForegroundColor= ConsoleColor.Cyan;
-            Console.WriteLine($"\nStworzono postać: {name} ({choosenClass.Name})");
-            Console.ResetColor();
 
-            Console.WriteLine("Naciśnij dowolny klawisz, aby kontynuować.");
+            Console.Write($"\nStworzono postać: {name} (");
+            Console.ForegroundColor = color;
+            Console.Write(choosenClass.Name);
+            Console.ResetColor();
+            Console.WriteLine(")");
+
+            Console.WriteLine("\nNaciśnij dowolny klawisz, aby kontynuować.");
             Console.ReadKey();
 
             Console.Clear();
