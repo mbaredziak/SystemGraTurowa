@@ -235,4 +235,92 @@ namespace graTurowa
             return incomingDamage;
         }
     }
+    public class LuckyGuy : Stats
+    {
+        private int resurrect;
+        public LuckyGuy()
+        {
+            resurrect = 10;
+            maxHp = 7000;
+            Hp= maxHp;
+            MinDmg = 400;
+            MaxDmg = 570;
+            Name = "Farciarz";
+            CritChance = 50;
+        }
+        public override int Attack()
+        {
+            int damage = base.Attack();
+            Random rnd = new Random();
+            if (rnd.Next(0, 40) == 0)
+            {
+                damage *= 2;
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.WriteLine($"{Name} podwaja obrażenia!");
+                Console.ResetColor();
+            }
+
+            if (rnd.Next(0, 40) == 0)
+            {
+                damage = (int)(damage * 1.5);
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.WriteLine($"{Name} zaklina swój miecz i zwiększa obrażenia!");
+                Console.ResetColor();
+            }
+            return damage;
+        }
+        public override int Defend(int incomingDamage)
+        {
+            Random rnd = new Random();
+            if (rnd.Next(0, 5) == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.WriteLine($"{Name} wykonuje unik!");
+                Console.ResetColor();
+                return 0;
+            }
+
+            if (rnd.Next(0, 5) == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.WriteLine($"{Name} wykonuje obronę tarczą!");
+                Console.ResetColor();
+                return 0;
+            }
+
+            if (rnd.Next(0, 5) == 0)
+            {
+                incomingDamage = (int)(incomingDamage * 0.5);
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.WriteLine($"{Name} zaklina swoją zbroję i niweluje połowę obrażeń!");
+                Console.ResetColor();
+            }
+
+            if (incomingDamage >= Hp)
+            {
+                if (rnd.Next(1, 101) <= resurrect)
+                {
+                    Hp = (int)(maxHp * 0.8);
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    Console.WriteLine($"{Name} otrzymuje śmiertelny cios, natomiast jego anioł odradza go z {Hp} HP!");
+                    Console.ResetColor();
+                    resurrect -= 10;
+                    return 0;
+                }
+            }
+            return incomingDamage;
+        }
+        public override bool ExtraTurn()
+        {
+            Random rnd = new Random();
+            if (rnd.Next(0, 20) == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.WriteLine($"{Name} wpada w szał i uderza ponownie!");
+                Console.ResetColor();
+                return true;
+            }
+            return false;
+        }
+    }
 }

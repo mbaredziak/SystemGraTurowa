@@ -40,7 +40,10 @@ namespace graTurowa
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("6. Łowca aniołów (Średnie HP, Średni atak)");
                 Console.ResetColor();
-                Console.Write("\nTwój wybór (1-6): ");
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine("7. Farciarz (Średnie HP, Średni atak)");
+                Console.ResetColor();
+                Console.Write("\nTwój wybór (1-7): ");
                 Console.WriteLine();
 
                 string input = Console.ReadLine();
@@ -68,11 +71,15 @@ namespace graTurowa
                         color = ConsoleColor.DarkRed;
                         break;
                     case "6":
-                        choosenClass=new AngelHunter();
+                        choosenClass = new AngelHunter();
                         color = ConsoleColor.Cyan;
                         break;
+                    case "7":
+                        choosenClass = new LuckyGuy();
+                        color = ConsoleColor.DarkGray;
+                        break;
                     default:
-                        Console.WriteLine("Niepoprawny wybór! Wpisz 1, 2, 3, 4, 5 lub 6.");
+                        Console.WriteLine("Niepoprawny wybór! Wpisz 1, 2, 3, 4, 5, 6 lub 7.");
                         break;
                 }
             }
