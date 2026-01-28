@@ -41,7 +41,7 @@ namespace graTurowa
                         player2.Vocation.Hp -= fdamage;
                         if (fdamage > 0)
                         {
-                            Console.WriteLine($"{player2.Vocation.Name} otrzymuje {fdamage} DMG! (Pozostałe HP: {player2.Vocation.Hp})");
+                            Console.WriteLine($"{player2.Vocation.Name} {player2.PlayerName} otrzymuje {fdamage} DMG! (Pozostałe HP: {player2.Vocation.Hp})");
                         }
                         if (player2.Vocation.Hp <= 0)
                         {
@@ -78,7 +78,10 @@ namespace graTurowa
                 }
                 if(player2.Vocation.Hp <= 0)
                 {
-                    Console.WriteLine($"Wygrywa {player1.Vocation.Name}!");
+                    Console.BackgroundColor = ConsoleColor.DarkBlue;
+                    Console.ForegroundColor= ConsoleColor.White;
+                    Console.WriteLine($"\nWygrywa {player1.Vocation.Name} {player1.PlayerName}!");
+                    Console.ResetColor();
                     break;
                 }
                 
@@ -100,7 +103,7 @@ namespace graTurowa
                         player1.Vocation.Hp -= fdamage;
                         if (fdamage > 0)
                         {
-                            Console.WriteLine($"{player1.Vocation.Name} otrzymuje {fdamage} DMG! (Pozostałe HP: {player1.Vocation.Hp})");
+                            Console.WriteLine($"{player1.Vocation.Name} {player1.PlayerName} otrzymuje {fdamage} DMG! (Pozostałe HP: {player1.Vocation.Hp})");
                         }
                         if (player1.Vocation.Hp <= 0)
                         {
@@ -137,7 +140,10 @@ namespace graTurowa
                 }
                 if (player1.Vocation.Hp <= 0)
                 {
-                    Console.WriteLine($"Wygrywa {player2.Vocation.Name}!");
+                    Console.BackgroundColor = ConsoleColor.DarkBlue;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine($"\nWygrywa {player2.Vocation.Name} {player2.PlayerName}!");
+                    Console.ResetColor();
                     break;
                 }
                 r++;
